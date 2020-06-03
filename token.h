@@ -9,7 +9,7 @@
 
 #define MAX_IDENT_LEN 15
 
-#define KEYWORDS_COUNT 25
+#define KEYWORDS_COUNT 25 +1
 
 typedef enum
 {
@@ -74,7 +74,8 @@ typedef enum
   SB_LPAR,
   SB_RPAR,
   SB_LSEL,
-  SB_RSEL
+  SB_RSEL,
+  SB_EXP //Luy thua
 } TokenType;
 
 typedef struct

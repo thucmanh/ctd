@@ -810,9 +810,12 @@ Type *compileExpression(void)
   case SB_PLUS:
     eat(SB_PLUS);
     type = compileExpression2();
-    checkNumberType(type);
-    // checkIntType(type);
-    break;
+    if (type->typeClass == TP_FLOAT || type->typeClass == TP_INT)
+      checkNumberType(type);
+    if (type->typeClass == TP_STRING)
+      checkStringType(type);
+      // checkIntType(type);
+      break;
   case SB_MINUS:
     eat(SB_MINUS);
     type = compileExpression2();
@@ -916,6 +919,7 @@ Type *compileExpression3(void)
   case KW_END:
   case KW_ELSE:
   case KW_THEN:
+  case SB_EXP:
 
   // Them follow RETURN
   case KW_RETURN:
@@ -944,6 +948,12 @@ void compileTerm2(void)
 
   switch (lookAhead->tokenType)
   {
+  case SB_EXP:
+    eat(SB_EXP);
+    type = compileFactor();
+    checkNumberType(type);
+    compileTerm2();
+    break;
   case SB_TIMES:
     eat(SB_TIMES);
     type = compileFactor();
@@ -951,6 +961,7 @@ void compileTerm2(void)
     // checkIntType(type);
     compileTerm2();
     break;
+  
   case SB_SLASH:
     eat(SB_SLASH);
     type = compileFactor();
@@ -960,6 +971,9 @@ void compileTerm2(void)
     break;
     // check the FOLLOW set
   case SB_PLUS:
+    // eat(SB_PLUS);
+    // type = compileFactor();
+    // checkStringType
   case SB_MINUS:
   case KW_TO:
   case KW_DO:

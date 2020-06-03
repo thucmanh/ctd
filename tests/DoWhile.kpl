@@ -4,6 +4,7 @@ const a = -10;
       c = -15.5;
 var number : float;
     x : integer;
+    n : integer;
 
 begin
     do 
@@ -13,5 +14,7 @@ begin
         end
     while 
         number = 0;
+
+    x := 2**2**n;
 
 end.

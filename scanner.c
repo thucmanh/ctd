@@ -235,7 +235,10 @@ Token *getToken(void)
     readChar();
     return token;
   case CHAR_TIMES:
-    token = makeToken(SB_TIMES, lineNo, colNo);
+    readChar();
+    if(charCodes[currentChar] == CHAR_TIMES )
+      token = makeToken(SB_EXP, lineNo, colNo);
+    else token = makeToken(SB_TIMES, lineNo, colNo);
     readChar();
     return token;
   case CHAR_SLASH:
@@ -554,5 +557,7 @@ void printToken(Token *token)
   case SB_RSEL:
     printf("SB_RSEL\n");
     break;
+  case SB_EXP:
+    printf("SB_EXP\n");
   }
 }

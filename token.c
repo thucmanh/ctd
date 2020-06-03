@@ -195,6 +195,8 @@ char *tokenToString(TokenType tokenType)
     return "\'(.\'";
   case SB_RSEL:
     return "\'.)\'";
+  case SB_EXP:
+    return "\'**\'";
   default:
     return "";
   }
