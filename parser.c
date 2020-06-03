@@ -815,7 +815,7 @@ Type *compileExpression(void)
     if (type->typeClass == TP_STRING)
       checkStringType(type);
       // checkIntType(type);
-      break;
+    break;
   case SB_MINUS:
     eat(SB_MINUS);
     type = compileExpression2();
@@ -971,9 +971,11 @@ void compileTerm2(void)
     break;
     // check the FOLLOW set
   case SB_PLUS:
-    // eat(SB_PLUS);
-    // type = compileFactor();
-    // checkStringType
+    eat(SB_PLUS);
+    type = compileFactor();
+    if(type->typeClass == TP_STRING)
+      checkStringType(type);
+    break;
   case SB_MINUS:
   case KW_TO:
   case KW_DO:

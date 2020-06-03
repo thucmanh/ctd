@@ -1,4 +1,6 @@
 program exam;
+const fl = -.678;
+      str = "hello";
 var n : float;
     s : string;
 function F (n : float; s : string) : string;
