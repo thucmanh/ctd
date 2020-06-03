@@ -376,7 +376,7 @@ Token *getValidToken(void)
     token = getToken();
   }
   // In thong tin Token
-  // printToken(token);
+  printToken(token);
   return token;
 }
 

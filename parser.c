@@ -277,10 +277,14 @@ ConstantValue *compileConstant(void)
   case SB_MINUS:
     eat(SB_MINUS);
     constValue = compileConstant2();
-    constValue->intValue = -constValue->intValue;
+    if(constValue->type == TP_INT)
+      constValue->intValue = - constValue->intValue;
+    if(constValue->type == TP_FLOAT)
+      constValue->floatValue = - constValue->floatValue;
     break;
   case TK_CHAR:
     eat(TK_CHAR);
+    
     constValue = makeCharConstant(currentToken->string[0]);
     break;
   default:
